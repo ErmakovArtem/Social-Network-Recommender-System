@@ -1,0 +1,4 @@
+[core]
+    remote = recsysremote
+['remote "recsysremote"']
+    url = gdrive://1kKrqOH0y6UfOq-7IxeGm3yvuKodpcksm
