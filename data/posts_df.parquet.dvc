@@ -1,0 +1,5 @@
+outs:
+- md5: 8095aefc55c23e5281d75fa8e819a56a
+  size: 5730122
+  hash: md5
+  path: posts_df.parquet
