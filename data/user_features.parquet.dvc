@@ -1,5 +1,0 @@
-outs:
-- md5: f82a0f39351398d9dfd5476bfab4370d
-  size: 1507971
-  hash: md5
-  path: user_features.parquet
