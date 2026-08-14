@@ -1,0 +1,5 @@
+outs:
+- md5: df92c16d169d15338e353d72662ad5b9
+  size: 1507970
+  hash: md5
+  path: users_df.parquet
