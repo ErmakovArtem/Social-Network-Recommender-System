@@ -1,0 +1,5 @@
+outs:
+- md5: 0cf281affc7701b25ebe09f3856919a0
+  size: 349642340
+  hash: md5
+  path: X_train_half.parquet

@@ -1,0 +1,5 @@
+outs:
+- md5: 216a104b3fc5119c49ee3525f8ee3724
+  size: 2347092
+  hash: md5
+  path: y_test_half.parquet
