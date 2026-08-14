@@ -1,0 +1,5 @@
+outs:
+- md5: 3ddc39698dc1e99b8d84009e975a895a
+  size: 7044
+  hash: md5
+  path: df_holiday.parquet
