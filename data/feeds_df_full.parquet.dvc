@@ -1,0 +1,5 @@
+outs:
+- md5: 9db89f246c5eb9d76f0e0dbed2598849
+  size: 20143470
+  hash: md5
+  path: feeds_df_full.parquet

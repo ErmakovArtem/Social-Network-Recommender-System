@@ -8,3 +8,8 @@
 /X_train_half.parquet
 /y_test_half.parquet
 /y_train_half.parquet
+/feeds_df_full.parquet
+/X_test_full.parquet
+/X_train_full.parquet
+/y_test_full.parquet
+/y_train_full.parquet
