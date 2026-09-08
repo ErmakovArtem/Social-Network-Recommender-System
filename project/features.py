@@ -1,9 +1,42 @@
 from __future__ import annotations
+from src.db.database import postgres_connection
+from typing import Any, Dict, List
 
 import pandas as pd
 from datetime import datetime
 from catboost import Pool
 
+from sqlalchemy import create_engine
+import os
+from dotenv import load_dotenv
+
+# === Вспомогательные функции ===
+def load_sql(query: str, dtypes: Dict[str, Any] = None) -> pd.DataFrame:
+    """
+    Выполняет SQL-запрос через соединение postgres_connection и возвращает DataFrame.
+
+    Аргументы:
+        query: SQL-запрос
+        dtypes: словарь типов колонок для pd.read_sql (по умолчанию None)
+
+    Возвращает:
+        pd.DataFrame с результатом запроса
+
+    Исключения:
+        RuntimeError, если произошла ошибка при выполнении запроса
+    """
+    conn = postgres_connection()
+
+    try:
+        df = pd.read_sql(query, conn, dtype=dtypes)
+    except Exception as e:
+        raise RuntimeError(
+            f"❌ Ошибка при выполнении SQL-запроса: {e}\nЗапрос: {query}"
+        ) from e
+    finally:
+        conn.close()
+
+    return df
 
 # === Класс для извлечения временных фичей ===
 class TimeFeatureExtractor:
@@ -125,14 +158,25 @@ class TimeFeatureExtractor:
 # === Загрузка основных ресурсов ===
 
 # Загружаем признаки пользователей из БД
-user_features = pd.read_parquet('../data/user_features.parquet')
+QUERY_USERS = """
+SELECT *
+FROM user_features_ar_ermakov
+"""
+user_features = load_sql(QUERY_USERS) 
 
 # Загружаем признаки постов из БД
-post_features = pd.read_parquet('../data/post_features.parquet')
-
+QUERY_POSTS = """
+SELECT *
+FROM post_features_ar_ermakov
+"""
+post_features = load_sql(QUERY_POSTS)
 
 # Загружаем df с датами праздников по странам из БД
-holiday_df = pd.read_parquet('../data/df_holiday.parquet')
+QUERY_HOLIDAY = """
+SELECT *
+FROM holiday_df_ar_ermakov
+"""
+holiday_df = load_sql(QUERY_HOLIDAY)
 
 # === Вычисление фичей ===
 
